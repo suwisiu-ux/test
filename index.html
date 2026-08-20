@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catatan Bayar WiFi</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="brand">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12.5a11 11 0 0 1 14 0"></path>
+        <path d="M8.5 16a6 6 0 0 1 7 0"></path>
+        <circle cx="12" cy="19" r="1.2" fill="#fff" stroke="none"></circle>
+      </svg>
+    </div>
+    <div>
+      <h1>Catatan Bayar WiFi</h1>
+      <p class="subtitle" id="summaryText">Memuat data...</p>
+    </div>
+  </div>
+  <div class="toolbar">
+    <button class="btn-primary" onclick="openNameModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+      Tambah Nama
+    </button>
+    <button class="btn-secondary" onclick="openMonthModal()">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+      Tambah Bulan
+    </button>
+  </div>
+</header>
+
+<main>
+  <div class="legend">
+    <span><span class="dot paid"></span>Lunas</span>
+    <span><span class="dot unpaid"></span>Belum bayar</span>
+    <span><span class="dot empty"></span>Belum diisi</span>
+  </div>
+
+  <div class="table-wrap" id="tableWrap">
+    <div class="empty-state">
+      <div class="big">📶</div>
+      <p><strong>Belum ada data</strong></p>
+      <p>Tambahkan nama pelanggan untuk mulai mencatat.</p>
+    </div>
+  </div>
+
+  <p class="save-note">Data tersimpan otomatis di perangkat ini.</p>
+</main>
+
+<div class="modal-overlay" id="nameModal">
+  <div class="modal">
+    <h3>Tambah nama pelanggan</h3>
+    <input type="text" id="nameInput" placeholder="Nama pelanggan" maxlength="40">
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('nameModal')">Batal</button>
+      <button class="btn-primary" onclick="addName()">Tambah</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="monthModal">
+  <div class="modal">
+    <h3>Tambah 12 bulan</h3>
+    <p style="font-size:13px;color:var(--sub);margin:-6px 0 14px;">Menambahkan kolom Jan–Des untuk tahun yang dipilih.</p>
+    <input type="number" id="monthInput" placeholder="Tahun, contoh: 2026" maxlength="4">
+    <div class="modal-actions">
+      <button class="btn-secondary" onclick="closeModal('monthModal')">Batal</button>
+      <button class="btn-primary" onclick="addMonth()">Tambah 12 bulan</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="statusModal">
+  <div class="modal">
+    <h3 id="statusModalTitle">Pilih status</h3>
+    <div class="status-options">
+      <button class="status-opt opt-paid" onclick="setCellStatus('paid')">
+        <span class="opt-icon">✓</span> Lunas
+      </button>
+      <button class="status-opt opt-unpaid" onclick="setCellStatus('unpaid')">
+        <span class="opt-icon">✕</span> Belum bayar
+      </button>
+      <button class="status-opt opt-empty" onclick="setCellStatus('')">
+        <span class="opt-icon">–</span> Kosongkan
+      </button>
+    </div>
+    <button class="btn-secondary" style="width:100%;margin-top:10px;justify-content:center;" onclick="closeModal('statusModal')">Batal</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
